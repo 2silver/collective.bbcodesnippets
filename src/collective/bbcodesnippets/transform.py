@@ -92,7 +92,7 @@ class BBCodeSnippetsTransform(object):
                 return el
             # wrap in element, now we have the new subtree
             try:
-                sub = lxmlhtml.fromstring("<bbcs>{}</bbcs>".format(formatted))
+                sub = lxmlhtml.fromstring(u"<bbcs>{}</bbcs>".format(formatted))
             except Exception:
                 logger.exception("BBCode result is not valid HTML failed.")
                 return el
@@ -116,7 +116,7 @@ class BBCodeSnippetsTransform(object):
             # wrap in element, now we have the new subtree
             try:
                 new_tail_structure = lxmlhtml.fromstring(
-                    "<bbcs>{}</bbcs>".format(formatted)
+                    u"<bbcs>{}</bbcs>".format(formatted)
                 )
             except Exception:
                 logger.exception("BBCode result is not valid HTML, failed.")
