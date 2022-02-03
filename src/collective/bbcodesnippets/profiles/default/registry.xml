@@ -5,7 +5,7 @@
 
   <records prefix="plone.resources/collective-bbcodesnippets"
     interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-    <value key="js">++plone++collective.bbcodesnippets/collective.bbcodesnippets.js</value>
+    <value key="js">++resource++collective.bbcodesnippets/collective.bbcodesnippets.js</value>
   </records>
 
   <records prefix="plone.bundles/collective-bbcodesnippets-app"
@@ -13,16 +13,15 @@
     <value key="resources">
       <element>collective-bbcodesnippets</element>
     </value>
-    <value key="last_compilation">2020-08-19 12:53:00</value>
-    <value key="jscompilation">++plone++collective.bbcodesnippets/collective.bbcodesnippets.js</value>
+    <value key="last_compilation"></value>
+    <value key="jscompilation">++resource++collective.bbcodesnippets/collective.bbcodesnippets-compiled.js</value>
     <value key="csscompilation"></value>
     <value key="develop_javascript">False</value>
     <value key="develop_css">False</value>
     <value key="depends">plone-tinymce</value>
     <value key="merge_with"></value>
-    <value key="enabled">True</value>
     <value key="expression">python: member is not None</value>
-    <value key="compile">False</value>
+    <value key="compile">True</value>
     <value key="enabled">True</value>
     <value key="load_defer">False</value>
   </records>
