@@ -1,9 +1,9 @@
 from .interfaces import IBBCodeSnippetsLayer
 from .parser import create_parser
+from Products.CMFPlone.utils import safe_unicode
 from lxml import etree
 from lxml import html as lxmlhtml
 from plone.transformchain.interfaces import ITransform
-from re import L
 from repoze.xmliter.utils import getHTMLSerializer
 from zope.component import adapter
 from zope.interface import implementer
@@ -86,13 +86,14 @@ class BBCodeSnippetsTransform(object):
         def _handle_text(el):
             # escape all literal tags in here and format with bbcode
             try:
-                formatted = parser.format(escape(el.text))
+                txt = escape(safe_unicode(el.text.encode('utf-8')))
+                formatted = parser.format(txt)
             except Exception:
                 logger.exception("BBCode format failed.")
                 return el
             # wrap in element, now we have the new subtree
             try:
-                sub = lxmlhtml.fromstring("<bbcs>{}</bbcs>".format(formatted))
+                sub = lxmlhtml.fromstring(u"<bbcs>{}</bbcs>".format(formatted))
             except Exception:
                 logger.exception("BBCode result is not valid HTML failed.")
                 return el
@@ -109,14 +110,15 @@ class BBCodeSnippetsTransform(object):
         def _handle_tail(el, last_sub):
             # escape all literal tags in here and format with bbcode
             try:
-                formatted = parser.format(escape(el.tail))
+                txt = escape(safe_unicode(el.tail.encode('utf-8')))
+                formatted = parser.format(txt)
             except Exception:
                 logger.exception("BBCode format failed.")
                 return
             # wrap in element, now we have the new subtree
             try:
                 new_tail_structure = lxmlhtml.fromstring(
-                    "<bbcs>{}</bbcs>".format(formatted)
+                    u"<bbcs>{}</bbcs>".format(formatted)
                 )
             except Exception:
                 logger.exception("BBCode result is not valid HTML, failed.")

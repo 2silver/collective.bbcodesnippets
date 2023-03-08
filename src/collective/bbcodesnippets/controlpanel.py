@@ -42,7 +42,7 @@ class BBCodeControlPanelForm(controlpanel.RegistryEditForm):
     schema_prefix = "bbcodesnippets"
 
     def updateFields(self):
-        super().updateFields()
+        super(BBCodeControlPanelForm, self).updateFields() 
         self.fields["formatters"].widgetFactory = CheckBoxFieldWidget
 
 
